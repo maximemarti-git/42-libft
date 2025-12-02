@@ -6,7 +6,7 @@
 /*   By: mamarti <mamarti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 07:52:10 by mamarti           #+#    #+#             */
-/*   Updated: 2025/11/13 10:52:06 by mamarti          ###   ########.fr       */
+/*   Updated: 2025/12/02 12:51:11 by mamarti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,16 @@
 # include <stdint.h>
 # include <stdbool.h>
 # include <limits.h>
+# include <fcntl.h>
+# include <stdarg.h>
+
+# define HEXA_UPP "0123456789ABCDEF"
+# define HEXA_LOW "0123456789abcdef"
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 5
+# endif
+# define FD_HARD_LIMIT 4096
 
 /* Libc functions */
 
@@ -77,5 +87,17 @@ void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
+
+/* ft_printf */
+
+int		ft_printf(const char *str, ...);
+void	ft_handle_printf(char c, va_list args, int *count);
+size_t	ft_putchar(char c);
+size_t	ft_putstr(char *str);
+size_t	ft_putnbr(long int n);
+size_t	ft_putnbr_base(unsigned long nb, char *base);
+size_t	ft_putnbr_unsigned(unsigned int nb);
+
+char	*get_next_line(int fd);
 
 #endif
