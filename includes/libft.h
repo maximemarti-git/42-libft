@@ -6,7 +6,7 @@
 /*   By: mamarti <mamarti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 07:52:10 by mamarti           #+#    #+#             */
-/*   Updated: 2025/12/02 12:51:11 by mamarti          ###   ########.fr       */
+/*   Updated: 2025/12/12 16:08:01 by mamarti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@
 #  define BUFFER_SIZE 5
 # endif
 # define FD_HARD_LIMIT 4096
+
+static char	*g_stash[FD_HARD_LIMIT];
 
 /* Libc functions */
 
@@ -98,6 +100,9 @@ size_t	ft_putnbr(long int n);
 size_t	ft_putnbr_base(unsigned long nb, char *base);
 size_t	ft_putnbr_unsigned(unsigned int nb);
 
+/* get_next_line */
+
 char	*get_next_line(int fd);
+void	gnl_clear(int fd);
 
 #endif

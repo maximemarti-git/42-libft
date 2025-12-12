@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mamarti <mamarti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 15:57:11 by mamarti           #+#    #+#             */
-/*   Updated: 2025/12/02 09:36:08 by mamarti          ###   ########.fr       */
+/*   Updated: 2025/12/12 16:09:30 by mamarti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,27 +58,37 @@ static char	*extract_line(char *line)
 	return (new_stash);
 }
 
+void	gnl_clear(int fd)
+{
+	if (fd < 0 || fd >= FD_HARD_LIMIT)
+		return ;
+	if (g_stash[fd])
+	{
+		free(g_stash[fd]);
+		g_stash[fd] = NULL;
+	}
+}
+
 char	*get_next_line(int fd)
 {
-	static char	*stash[FD_HARD_LIMIT];
 	char		*line;
 	char		*buffer;
 
 	if ((fd < 0 || fd > FD_HARD_LIMIT) || BUFFER_SIZE <= 0
 		|| read(fd, 0, 0) < 0)
 	{
-		free(stash[fd]);
-		stash[fd] = NULL;
+		free(g_stash[fd]);
+		g_stash[fd] = NULL;
 		return (NULL);
 	}
 	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (NULL);
-	line = fill_line(fd, stash[fd], buffer);
+	line = fill_line(fd, g_stash[fd], buffer);
 	free(buffer);
 	buffer = NULL;
 	if (!line)
 		return (NULL);
-	stash[fd] = extract_line(line);
+	g_stash[fd] = extract_line(line);
 	return (line);
 }
