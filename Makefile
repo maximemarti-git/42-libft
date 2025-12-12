@@ -6,7 +6,7 @@
 #    By: mamarti <mamarti@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/06 07:52:02 by mamarti           #+#    #+#              #
-#    Updated: 2025/12/02 12:48:42 by mamarti          ###   ########.fr        #
+#    Updated: 2025/12/12 16:09:39 by mamarti          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,18 +25,32 @@ SRC	=			ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c \
 
 SRCS_DIR	=		srcs
 SRCS		=		$(addprefix $(SRCS_DIR)/, $(SRC))
-OBJS		=		$(SRCS:.c=.o)
+OBJ_DIR		=		objs
+OBJS		=		$(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
+DEPS		=		$(OBJS:.o=.d)
 NAME		=		libft.a
 CC			=		cc
-CFLAGS		=		-Wall -Wextra -Werror -Iincludes
+CFLAGS		=		-Wall -Wextra -Werror -Iincludes -MMD -MP
+
+GREEN = \033[38;2;41;169;41m
+NC = \033[0m
+
+define ECHO_SUCCESS
+	@echo "$(GREEN)[Libft] Compilation success!$(NC)"
+endef
+
+$(OBJ_DIR)/%.o: 	$(SRCS_DIR)/%.c
+					@mkdir -p $(OBJ_DIR)
+					$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME):			$(OBJS)
 					ar rc $(NAME) $(OBJS)
+					$(ECHO_SUCCESS)
 				
 all:				$(NAME)
 
 clean:
-					rm -f $(OBJS)
+					rm -rf $(OBJ_DIR)
 
 fclean:				clean
 					rm -f $(NAME)
@@ -44,3 +58,5 @@ fclean:				clean
 re:					fclean all
 
 .PHONY:				all clean fclean re bonus
+
+-include $(DEPS)
