@@ -6,7 +6,7 @@
 /*   By: mamarti <mamarti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 07:52:10 by mamarti           #+#    #+#             */
-/*   Updated: 2025/12/18 12:44:58 by mamarti          ###   ########.fr       */
+/*   Updated: 2025/12/18 12:51:06 by mamarti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int		ft_tolower(int c);
 int		ft_strncmp(const char *str1, const char *str2, size_t n);
 int		ft_memcmp(const void *ptr1, const void *ptr2, size_t n);
 int		ft_atoi(const char *str);
+long	ft_atol(const char *str);
 size_t	ft_strlen(const char *str);
 size_t	ft_strlcpy(char *dst, const char *src, size_t n);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
