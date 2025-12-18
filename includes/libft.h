@@ -6,7 +6,7 @@
 /*   By: mamarti <mamarti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 07:52:10 by mamarti           #+#    #+#             */
-/*   Updated: 2025/12/12 16:08:01 by mamarti          ###   ########.fr       */
+/*   Updated: 2025/12/18 12:44:58 by mamarti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 /* ft_printf */
 
 int		ft_printf(const char *str, ...);
-void	ft_handle_printf(char c, va_list args, int *count);
+void	ft_handle_printf(char c, va_list *args, int *count);
 size_t	ft_putchar(char c);
 size_t	ft_putstr(char *str);
 size_t	ft_putnbr(long int n);

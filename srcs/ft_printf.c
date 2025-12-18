@@ -6,7 +6,7 @@
 /*   By: mamarti <mamarti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 09:36:52 by mamarti           #+#    #+#             */
-/*   Updated: 2025/12/02 12:51:44 by mamarti          ###   ########.fr       */
+/*   Updated: 2025/12/18 12:45:29 by mamarti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_printf(const char *str, ...)
 	{
 		if (str[i] == '%')
 		{
-			ft_handle_printf(str[i + 1], args, &count);
+			ft_handle_printf(str[i + 1], &args, &count);
 			i += 2;
 		}
 		else
