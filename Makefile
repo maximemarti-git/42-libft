@@ -6,7 +6,7 @@
 #    By: mamarti <mamarti@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/06 07:52:02 by mamarti           #+#    #+#              #
-#    Updated: 2025/12/18 12:53:54 by mamarti          ###   ########.fr        #
+#    Updated: 2026/01/29 11:47:55 by mamarti          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,14 +23,14 @@ SRC	=			ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c \
 				ft_lstmap.c ft_printf.c ft_printf_utils.c \
 				ft_printf_functions.c get_next_line.c
 
-SRCS_DIR	=		srcs
-SRCS		=		$(addprefix $(SRCS_DIR)/, $(SRC))
+SRC_DIR	=		src
+SRCS		=		$(addprefix $(SRC_DIR)/, $(SRC))
 OBJ_DIR		=		objs
 OBJS		=		$(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 DEPS		=		$(OBJS:.o=.d)
 NAME		=		libft.a
 CC			=		cc
-CFLAGS		=		-Wall -Wextra -Werror -Iincludes -MMD -MP
+CFLAGS		=		-Wall -Wextra -Werror -Iinclude -MMD -MP
 
 GREEN = \033[38;2;41;169;41m
 NC = \033[0m
@@ -39,7 +39,7 @@ define ECHO_SUCCESS
 	@echo "$(GREEN)[Libft] Compilation success!$(NC)"
 endef
 
-$(OBJ_DIR)/%.o: 	$(SRCS_DIR)/%.c
+$(OBJ_DIR)/%.o: 	$(SRC_DIR)/%.c
 					@mkdir -p $(OBJ_DIR)
 					$(CC) $(CFLAGS) -c $< -o $@
 
