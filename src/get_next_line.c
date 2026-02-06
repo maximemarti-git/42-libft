@@ -6,7 +6,7 @@
 /*   By: mamarti <mamarti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 15:57:11 by mamarti           #+#    #+#             */
-/*   Updated: 2025/12/12 16:09:30 by mamarti          ###   ########.fr       */
+/*   Updated: 2026/02/06 15:15:45 by mamarti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ static char	*extract_line(char *line)
 	if (!line[index])
 		return (NULL);
 	new_stash = ft_substr(line, index + 1, ft_strlen(line) - index);
+	if (!new_stash)
+		return (NULL);
 	if (*new_stash == 0)
 	{
 		free(new_stash);
@@ -74,7 +76,7 @@ char	*get_next_line(int fd)
 	char		*line;
 	char		*buffer;
 
-	if ((fd < 0 || fd > FD_HARD_LIMIT) || BUFFER_SIZE <= 0
+	if (fd < 0 || fd > FD_HARD_LIMIT || BUFFER_SIZE <= 0
 		|| read(fd, 0, 0) < 0)
 	{
 		free(g_stash[fd]);
